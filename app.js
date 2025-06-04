@@ -1,5 +1,8 @@
 import { createServer } from 'http';
 import fs from 'fs';
+import dotenv from 'dotenv';
+
+const result = dotenv.config();
 
 const server = createServer((req, res) => {
   res.setHeader('Content-type', 'text/html');
@@ -60,3 +63,9 @@ const server = createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
   console.log('Listening for requests on port 3000');
 });
+
+// Just practicing dotenv
+if (process.env.NODE_ENV === 'prod') {
+  console.log(result.parsed);
+  console.log(`API: ${process.env.API_KEY}`);
+}
